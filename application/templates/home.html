@@ -6,9 +6,8 @@
 		{% if post.user_id == current_user.id %}
 			<div>
 				<h3>{{ post.title }}</h3>
-				<!-- <a href="{{ url_for('/post/'+post.id|string) }}">edit</a> -->
-				<span>by <i>YABOII {{ post.author.first_name }} {{ post.author.last_name }}</i></span>
-				<span>on the <i>{{ post.date_posted }}</i></span>
+				<span>by <i>yaboi {{ post.author.first_name }} {{ post.author.last_name }}</i></span>
+				<span>on the <i>{{ post.date_posted.strftime('%d/%m/%y %H:%M') }}</i></span>
 				<p>{{ post.content }}</p>
 			</div>
 		{% else %}

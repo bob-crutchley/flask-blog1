@@ -86,7 +86,7 @@ def account():
 def view_post(post_id):
 	if current_user.is_authenticated:
 		post = Posts.query.filter_by(id=post_id).first()
-		if post.user_id == current_user.id
+		if post.user_id == current_user.id:
 			return redirect(url_for('post'))
 		else:
 			return redirect(url_for('home'))
