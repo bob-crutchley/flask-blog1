@@ -86,20 +86,8 @@ def account():
 def view_post(post_id):
 	if current_user.is_authenticated:
 		post = Posts.query.filter_by(id=post_id).first()
-		print("post:")
-		if post.user_id == current_user.id:
-			print("your post mate")
+		if post.user_id == current_user.id
 			return redirect(url_for('post'))
 		else:
 			return redirect(url_for('home'))
-	print("who'd'ya think y'are?")
 	return render_template('uhuhhn.html', title='TURN BACK')
-
-@app.errorhandler(404)
-def page_not_found(e):
-	print(e)
-	return render_template('uhuhhn.html', title='TURN BACK')
-
-@app.route('/<path:route>')
-def fallback(route):
-	return render_template('uhuhhn.html', title='TURN BACK', route=route)
