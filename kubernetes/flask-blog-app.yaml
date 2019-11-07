@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-blog-app
+  labels: 
+    app: flask-blog-app
+spec:
+  selector:
+    matchLabels:
+      app: flask-blog-app
+  template:
+    metadata:
+      labels:
+        app: flask-blog-pp
+    spec:
+      containers:
+      - name: flask-blog
+        image: bobcrutchley/flask-blog:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: MYSQL_USER
+          value: {{MYSQL_USER}}
+        - name: MYSQL_PASSWORD
+          value: {{MYSQL_PASSWORD}}
+        - name: MYSQL_URI
+          value: flask-blog-mysql:3306
+        - name: MYSQL_DATABASE
+          value: {{MYSQL_DATABASE}}
+        - name: SECRET_KEY
+          value: {{SECRET_KEY}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-blog-app
+spec:
+  selector:
+    app: flask-blog-app
+  port:
+  - protocol: TCP
+    port: 80
+    targetPort: 8000
+  type: LoadBalancer
