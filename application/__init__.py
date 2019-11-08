@@ -16,7 +16,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = ('mysql+pymysql://' +
                                          getenv('MYSQL_DATABASE')
                                         )
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = '7218a9143c27c16610765205a1b21cb7'
+app.config['SECRET_KEY'] = getenv('SECRET_KEY')
 
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
